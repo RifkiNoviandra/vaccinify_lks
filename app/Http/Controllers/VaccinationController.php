@@ -64,7 +64,7 @@ class VaccinationController extends Controller
     function getVaccinationById(){
         $user = Auth::guard('society')->user();
 
-        $data = vaccination::with(['spot.regional' , 'vaccine' , 'user'])->where('society_id' , $user->id)->get();
+        $data = vaccination::with(['spot.regional' , 'vaccine' , 'user.medical'])->where('society_id' , $user->id)->get();
 
         return response([
             'vaccinations' => new VaccinationDataCollection($data)

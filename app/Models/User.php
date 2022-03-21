@@ -13,4 +13,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     protected $guarded = [];
     public $timestamps = false;
+
+    function medical(){
+        return $this->hasOne(medical::class , 'user_id');
+    }
 }

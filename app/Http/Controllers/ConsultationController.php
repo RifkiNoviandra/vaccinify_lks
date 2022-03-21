@@ -34,7 +34,7 @@ class ConsultationController extends Controller
 
     function getConsultation(Request $request){
         $user = Auth::guard('society')->user();
-        $data = Consultation::with('user')->where('society_id' , $user->id)->orderBy('id' , 'DESC')->get();
+        $data = Consultation::with('user.medical')->where('society_id' , $user->id)->orderBy('id' , 'DESC')->get();
 
         return response([
             'consultations'=> $data

@@ -20,6 +20,14 @@ Route::post('/v1/auth/login' , [\App\Http\Controllers\SocietyController::class ,
 Route::prefix('v1')->group(function(){
     Route::post('/auth/logout' , [\App\Http\Controllers\SocietyController::class , 'logout']);
 
+    Route::post('officer/auth/login' , [\App\Http\Controllers\OfficerController::class , 'login']);
+    Route::post('officer/consultation/{id}' , [\App\Http\Controllers\OfficerController::class , 'approveConsultation']);
+    Route::get('officer/consultation' , [\App\Http\Controllers\OfficerController::class , 'getAllConsultation']);
+    Route::post('officer/vaccination/{id}' , [\App\Http\Controllers\OfficerController::class , 'Vaccination']);
+    Route::get('officer/vaccination' , [\App\Http\Controllers\OfficerController::class , 'getAllVaccination']);
+    Route::get('officer/doctor' , [\App\Http\Controllers\OfficerGetData::class , 'getDoctor']);
+    Route::get('officer/vaccine' , [\App\Http\Controllers\OfficerGetData::class , 'getVaccine']);
+
     Route::middleware('user')->group(function(){
         Route::get('/spots' , [\App\Http\Controllers\SpotController::class , 'getSpot']);
         Route::get('/spots/{spot_id}' , [\App\Http\Controllers\SpotController::class , 'getSpotById']);
